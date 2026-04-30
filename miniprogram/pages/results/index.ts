@@ -1,5 +1,6 @@
 import { defaultContent } from '@/data/default-content';
 import { recommendOutfits, getSampleRecommendations } from '@/services/recommend';
+import { getResultsFeaturedOutfit } from '@/data/primary-visuals';
 import type { BudgetLevel, Scene, StylePreference, UserPreferenceInput } from '@/types/outfit';
 import { budgetLabelMap, sceneLabelMap, styleLabelMap } from '@/utils/mapper';
 import { getOutfitTemperatureLabel, getPieceBadge } from '@/utils/outfit-display';
@@ -25,20 +26,21 @@ export function buildResultsViewModel(query: Record<string, string>) {
   const filters = parseResultsQuery(query);
   const items = filters ? recommendOutfits(filters) : getSampleRecommendations();
   const featured = items[0] ?? null;
+  const featuredOutfit = getResultsFeaturedOutfit(featured?.outfit ?? null);
 
   return {
     filters,
     items,
     featured,
-    featuredOutfit: featured?.outfit ?? null,
-    featuredTemperature: featured ? getOutfitTemperatureLabel(featured.outfit) : '',
+    featuredOutfit,
+    featuredTemperature: featuredOutfit ? getOutfitTemperatureLabel(featuredOutfit) : '',
     pieceRows:
-      featured?.outfit.pieces.map((piece) => ({
+      featuredOutfit?.pieces.map((piece) => ({
         ...piece,
         badge: getPieceBadge(piece)
       })) ?? [],
     visualThumbs:
-      featured?.outfit.pieces.slice(0, 3).map((piece) => ({
+      featuredOutfit?.pieces.slice(0, 3).map((piece) => ({
         name: piece.name,
         badge: getPieceBadge(piece),
         image: piece.image

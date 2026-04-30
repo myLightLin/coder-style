@@ -33,9 +33,10 @@ describe('results page', () => {
     expect(viewModel.filters).toBeNull();
     expect(viewModel.items).toHaveLength(3);
     expect(viewModel.sampleHint).toContain('当前为示例数据');
-    expect(viewModel.featuredOutfit?.title).toBe('极简通勤');
+    expect(viewModel.featuredOutfit?.title).toBe('轻商务通勤');
     expect(viewModel.visualThumbs).toHaveLength(3);
-    expect(viewModel.featuredOutfit?.heroImage).toContain('https://');
+    expect(viewModel.featuredOutfit?.heroImage).toBe('/assets/primary-visuals/results-primary.png');
+    expect(viewModel.pieceRows.map((item) => item.name)).toEqual(['深灰针织 POLO', '卡其直筒裤', '小白鞋']);
     expect(viewModel.visualThumbs[0]?.image).toContain('https://');
   });
 

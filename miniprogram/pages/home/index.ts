@@ -1,9 +1,11 @@
 import { defaultContent } from '@/data/default-content';
 import { outfitPlans } from '@/data/outfits';
+import { getHomeFeaturedOutfit } from '@/data/primary-visuals';
 import { buildWeatherSummary, getOutfitTemperatureLabel } from '@/utils/outfit-display';
 
 export function buildHomeViewModel() {
-  const featuredSample = outfitPlans.find((item) => item.isSample && item.sceneTags.includes('commute')) ?? outfitPlans[0] ?? null;
+  const baseFeaturedSample = outfitPlans.find((item) => item.isSample && item.sceneTags.includes('commute')) ?? outfitPlans[0] ?? null;
+  const featuredSample = getHomeFeaturedOutfit(baseFeaturedSample);
 
   return {
     heroTitle: defaultContent.heroTitle,

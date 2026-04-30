@@ -1,4 +1,5 @@
 import { defaultContent } from '@/data/default-content';
+import { getDetailDisplayOutfit } from '@/data/primary-visuals';
 import { buildMatchedReasons, buildSummary } from '@/services/explain';
 import { getOutfitById } from '@/services/recommend';
 import { isFavorite, saveFavorite, saveHistory } from '@/utils/storage';
@@ -25,8 +26,8 @@ function parseDetailContext(query: Record<string, string>): DetailContext | null
 
 export function buildDetailViewModel(query: Record<string, string>) {
   const context = parseDetailContext(query);
-  const outfit = getOutfitById(query.outfitId);
-  if (!outfit) {
+  const baseOutfit = getOutfitById(query.outfitId);
+  if (!baseOutfit) {
     return {
       outfit: null,
       summary: '',
@@ -37,19 +38,20 @@ export function buildDetailViewModel(query: Record<string, string>) {
     };
   }
 
-  saveHistory(outfit.id);
+  saveHistory(baseOutfit.id);
+  const outfit = getDetailDisplayOutfit(baseOutfit);
 
   return {
     outfit,
-    pieceCards: outfit.pieces.map((piece) => ({
+    pieceCards: outfit?.pieces.map((piece) => ({
       ...piece,
       badge: getPieceBadge(piece)
-    })),
-    summary: buildSummary(context?.scene ?? outfit.sceneTags[0], context?.stylePreference ?? outfit.styleTags[0]),
+    })) ?? [],
+    summary: buildSummary(context?.scene ?? baseOutfit.sceneTags[0], context?.stylePreference ?? baseOutfit.styleTags[0]),
     matchedReasons: context
       ? buildMatchedReasons(context.scene, context.stylePreference, context.budgetLevel)
-      : outfit.reason,
-    favorite: isFavorite(outfit.id),
+      : baseOutfit.reason,
+    favorite: isFavorite(baseOutfit.id),
     errorTitle: '',
     errorDescription: ''
   };

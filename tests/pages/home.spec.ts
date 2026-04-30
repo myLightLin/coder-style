@@ -26,8 +26,8 @@ describe('home page', () => {
   it('builds a home view model without the removed favorites block', () => {
     const viewModel = buildHomeViewModel();
     expect(viewModel.weather.temperature).toBe('22°C');
-    expect(viewModel.featuredTag).toBe('低调有精神');
-    expect(viewModel.featuredSample?.heroImage).toContain('https://');
+    expect(viewModel.featuredTag).toBe('清爽低压');
+    expect(viewModel.featuredSample?.heroImage).toBe('/assets/primary-visuals/home-primary.png');
     expect('recentFavorites' in viewModel).toBe(false);
   });
 

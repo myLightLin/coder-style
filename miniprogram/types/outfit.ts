@@ -16,6 +16,7 @@ export interface OutfitPiece {
   category: OutfitPieceCategory;
   name: string;
   color: string;
+  image: string;
   note?: string;
   alternatives?: string[];
 }
@@ -34,7 +35,7 @@ export interface OutfitPlan {
   avoidTips: string[];
   tips: string[];
   pieces: OutfitPiece[];
-  heroImage?: string;
+  heroImage: string;
   isSample: boolean;
 }
 

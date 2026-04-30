@@ -35,6 +35,8 @@ describe('results page', () => {
     expect(viewModel.sampleHint).toContain('当前为示例数据');
     expect(viewModel.featuredOutfit?.title).toBe('极简通勤');
     expect(viewModel.visualThumbs).toHaveLength(3);
+    expect(viewModel.featuredOutfit?.heroImage).toContain('https://');
+    expect(viewModel.visualThumbs[0]?.image).toContain('https://');
   });
 
   it('builds generated mode summary and fallback copy', () => {

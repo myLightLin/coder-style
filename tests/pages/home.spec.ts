@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { createHomePage } from '@/pages/home/index';
-import { __resetStorage, saveFavorite } from '@/utils/storage';
+import { buildHomeViewModel, createHomePage } from '@/pages/home/index';
+import { __resetStorage } from '@/utils/storage';
 
 describe('home page', () => {
   beforeEach(() => {
@@ -23,12 +23,12 @@ describe('home page', () => {
     expect(wx.navigateTo).toHaveBeenCalledWith({ url: '/pages/results/index?mode=sample' });
   });
 
-  it('includes recent favorites in view model', () => {
-    saveFavorite('commute-minimal-01');
-    const page = createHomePage();
-    expect(page.data.recentFavorites).toHaveLength(1);
-    expect(page.data.weather.temperature).toBe('22°C');
-    expect(page.data.featuredTag).toBe('低调有精神');
+  it('builds a home view model without the removed favorites block', () => {
+    const viewModel = buildHomeViewModel();
+    expect(viewModel.weather.temperature).toBe('22°C');
+    expect(viewModel.featuredTag).toBe('低调有精神');
+    expect(viewModel.featuredSample?.heroImage).toContain('https://');
+    expect('recentFavorites' in viewModel).toBe(false);
   });
 
   it('supports quick scene and favorite navigation', () => {

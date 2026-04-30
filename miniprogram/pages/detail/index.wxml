@@ -10,11 +10,15 @@
   <view wx:else>
     <view class="gallery-card glass-card">
       <view class="gallery-card__hero">
-        <text class="gallery-card__label">{{galleryLabel}}</text>
+        <image
+          class="gallery-card__hero-image"
+          src="{{outfit.heroImage}}"
+          mode="aspectFill"
+        />
       </view>
       <view class="gallery-card__thumbs">
         <view wx:for="{{pieceCards}}" wx:key="name" class="gallery-card__thumb">
-          <text class="gallery-card__thumb-badge">{{item.badge}}</text>
+          <image class="gallery-card__thumb-image" src="{{item.image}}" mode="aspectFill" />
           <text class="gallery-card__thumb-name">{{item.name}}</text>
         </view>
       </view>
@@ -30,7 +34,7 @@
       <text class="block__title">单品清单</text>
       <view class="piece-grid">
         <view wx:for="{{pieceCards}}" wx:key="name" class="piece-card">
-          <view class="piece-card__thumb">{{item.badge}}</view>
+          <image class="piece-card__thumb" src="{{item.image}}" mode="aspectFill" />
           <text class="piece-card__name">{{item.name}}</text>
         </view>
       </view>

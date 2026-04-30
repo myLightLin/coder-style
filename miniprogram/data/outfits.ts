@@ -2,6 +2,32 @@ import type { OutfitPlan } from '@/types/outfit';
 
 const plan = (item: OutfitPlan): OutfitPlan => item;
 
+const heroImages = {
+  commute:
+    'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1200&q=80',
+  interview:
+    'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1200&q=80',
+  client:
+    'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=1200&q=80',
+  weekend:
+    'https://images.unsplash.com/photo-1506629905607-d9c297dce8cc?auto=format&fit=crop&w=1200&q=80',
+  date:
+    'https://images.unsplash.com/photo-1504593811423-6dd665756598?auto=format&fit=crop&w=1200&q=80'
+} as const;
+
+const pieceImages = {
+  polo: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80',
+  shirt: 'https://images.unsplash.com/photo-1603252109303-2751441dd157?auto=format&fit=crop&w=800&q=80',
+  trousers: 'https://images.unsplash.com/photo-1506629905607-d9c297dce8cc?auto=format&fit=crop&w=800&q=80',
+  whiteShoes: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80',
+  jacket: 'https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=800&q=80',
+  blazer: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=800&q=80',
+  loafers: 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=800&q=80',
+  knit: 'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?auto=format&fit=crop&w=800&q=80',
+  tee: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=800&q=80',
+  cardigan: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80'
+} as const;
+
 export const outfitPlans: OutfitPlan[] = [
   plan({
     id: 'commute-minimal-01',
@@ -16,11 +42,12 @@ export const outfitPlans: OutfitPlan[] = [
     reason: ['正式度够用，适合办公室和轻商务见面。', '上深下浅更显干净，程序员日常照抄不会出错。'],
     avoidTips: ['不要换成大 Logo T 恤。', '裤脚别堆在鞋面上。'],
     tips: ['优先合身', '颜色不超过 3 种', '裤线保持利落'],
+    heroImage: heroImages.commute,
     pieces: [
-      { category: 'top', name: '深灰针织 POLO', color: '深灰', alternatives: ['深蓝针织 POLO'] },
-      { category: 'bottom', name: '米白直筒长裤', color: '米白', alternatives: ['浅卡其直筒裤'] },
-      { category: 'shoes', name: '小白鞋', color: '白', alternatives: ['德训鞋'] },
-      { category: 'outerwear', name: '海军蓝轻薄外套', color: '海军蓝', alternatives: ['灰蓝衬衫外套'] }
+      { category: 'top', name: '深灰针织 POLO', color: '深灰', image: pieceImages.polo, alternatives: ['深蓝针织 POLO'] },
+      { category: 'bottom', name: '米白直筒长裤', color: '米白', image: pieceImages.trousers, alternatives: ['浅卡其直筒裤'] },
+      { category: 'shoes', name: '小白鞋', color: '白', image: pieceImages.whiteShoes, alternatives: ['德训鞋'] },
+      { category: 'outerwear', name: '海军蓝轻薄外套', color: '海军蓝', image: pieceImages.jacket, alternatives: ['灰蓝衬衫外套'] }
     ],
     isSample: true
   }),
@@ -37,11 +64,12 @@ export const outfitPlans: OutfitPlan[] = [
     reason: ['正式度足够，但不会显得刻意老派。', '衬衫和轻西装能快速建立面试中的可靠感。'],
     avoidTips: ['不要穿破洞裤。', '不要搭脏旧运动鞋。'],
     tips: ['衬衫领口保持平整', '裤长刚好落鞋面', '鞋面保持干净'],
+    heroImage: heroImages.interview,
     pieces: [
-      { category: 'top', name: '浅蓝牛津衬衫', color: '浅蓝', alternatives: ['白色牛津衬衫'] },
-      { category: 'bottom', name: '深灰休闲西裤', color: '深灰' },
-      { category: 'shoes', name: '简洁白鞋', color: '白', alternatives: ['深棕皮鞋'] },
-      { category: 'outerwear', name: '藏青轻西装', color: '藏青' }
+      { category: 'top', name: '浅蓝牛津衬衫', color: '浅蓝', image: pieceImages.shirt, alternatives: ['白色牛津衬衫'] },
+      { category: 'bottom', name: '深灰休闲西裤', color: '深灰', image: pieceImages.trousers },
+      { category: 'shoes', name: '简洁白鞋', color: '白', image: pieceImages.whiteShoes, alternatives: ['深棕皮鞋'] },
+      { category: 'outerwear', name: '藏青轻西装', color: '藏青', image: pieceImages.blazer }
     ],
     isSample: true
   }),
@@ -58,11 +86,12 @@ export const outfitPlans: OutfitPlan[] = [
     reason: ['客户场景需要边界感，这套有正式度又不僵硬。', '色彩克制，镜头和线下都显干净。'],
     avoidTips: ['不要同时出现亮色和夸张印花。'],
     tips: ['袖长刚过腕骨', '鞋面别过厚', '外套保持轻量'],
+    heroImage: heroImages.client,
     pieces: [
-      { category: 'top', name: '白色衬衫', color: '白' },
-      { category: 'bottom', name: '炭灰九分休闲裤', color: '炭灰' },
-      { category: 'shoes', name: '乐福鞋', color: '深棕', alternatives: ['简洁皮鞋'] },
-      { category: 'outerwear', name: '灰蓝薄外套', color: '灰蓝' }
+      { category: 'top', name: '白色衬衫', color: '白', image: pieceImages.shirt },
+      { category: 'bottom', name: '炭灰九分休闲裤', color: '炭灰', image: pieceImages.trousers },
+      { category: 'shoes', name: '乐福鞋', color: '深棕', image: pieceImages.loafers, alternatives: ['简洁皮鞋'] },
+      { category: 'outerwear', name: '灰蓝薄外套', color: '灰蓝', image: pieceImages.jacket }
     ],
     isSample: false
   }),
@@ -79,11 +108,12 @@ export const outfitPlans: OutfitPlan[] = [
     reason: ['周末需要轻松，但别穿得像刚起床。', '外搭薄衬衫可以让简单单品更有层次。'],
     avoidTips: ['不要上下一样松。'],
     tips: ['T 恤肩线要正', '裤型直筒优先', '留一点脚踝更轻盈'],
+    heroImage: heroImages.weekend,
     pieces: [
-      { category: 'top', name: '米白纯色 T 恤', color: '米白' },
-      { category: 'bottom', name: '卡其直筒裤', color: '卡其' },
-      { category: 'shoes', name: '德训鞋', color: '白灰' },
-      { category: 'outerwear', name: '轻薄衬衫外套', color: '浅灰' }
+      { category: 'top', name: '米白纯色 T 恤', color: '米白', image: pieceImages.tee },
+      { category: 'bottom', name: '卡其直筒裤', color: '卡其', image: pieceImages.trousers },
+      { category: 'shoes', name: '德训鞋', color: '白灰', image: pieceImages.whiteShoes },
+      { category: 'outerwear', name: '轻薄衬衫外套', color: '浅灰', image: pieceImages.shirt }
     ],
     isSample: true
   }),
@@ -100,11 +130,12 @@ export const outfitPlans: OutfitPlan[] = [
     reason: ['约会不需要过度正式，但要有精神面貌。', '上深下浅更显利落，拍照也更友好。'],
     avoidTips: ['不要整身灰黑无层次。'],
     tips: ['POLO 领口不要塌', '裤腰合适', '鞋子尽量纯色'],
+    heroImage: heroImages.date,
     pieces: [
-      { category: 'top', name: '深蓝 POLO', color: '深蓝' },
-      { category: 'bottom', name: '浅卡其休闲裤', color: '浅卡其' },
-      { category: 'shoes', name: '干净板鞋', color: '白' },
-      { category: 'outerwear', name: '同色系轻外套', color: '海军蓝' }
+      { category: 'top', name: '深蓝 POLO', color: '深蓝', image: pieceImages.polo },
+      { category: 'bottom', name: '浅卡其休闲裤', color: '浅卡其', image: pieceImages.trousers },
+      { category: 'shoes', name: '干净板鞋', color: '白', image: pieceImages.whiteShoes },
+      { category: 'outerwear', name: '同色系轻外套', color: '海军蓝', image: pieceImages.jacket }
     ],
     isSample: false
   }),
@@ -121,11 +152,12 @@ export const outfitPlans: OutfitPlan[] = [
     reason: ['对程序员日常来说，这套正式度刚好。', '材质和版型比品牌更重要。'],
     avoidTips: ['不要配过厚老爹鞋。'],
     tips: ['上衣下摆保持利落', '裤脚不过长', '一件浅外套即可'],
+    heroImage: heroImages.commute,
     pieces: [
-      { category: 'top', name: '石墨灰针织短袖', color: '石墨灰' },
-      { category: 'bottom', name: '浅卡其锥形裤', color: '浅卡其' },
-      { category: 'shoes', name: '白色皮面休闲鞋', color: '白' },
-      { category: 'outerwear', name: '雾蓝轻夹克', color: '雾蓝' }
+      { category: 'top', name: '石墨灰针织短袖', color: '石墨灰', image: pieceImages.knit },
+      { category: 'bottom', name: '浅卡其锥形裤', color: '浅卡其', image: pieceImages.trousers },
+      { category: 'shoes', name: '白色皮面休闲鞋', color: '白', image: pieceImages.whiteShoes },
+      { category: 'outerwear', name: '雾蓝轻夹克', color: '雾蓝', image: pieceImages.jacket }
     ],
     isSample: false
   }),
@@ -142,11 +174,12 @@ export const outfitPlans: OutfitPlan[] = [
     reason: ['更像认真准备过，但不会像销售岗那样用力过猛。', '低预算也能靠基础款复现。'],
     avoidTips: ['不要穿印花卫衣。', '不要裤子太紧。'],
     tips: ['白衬衫别透', '外套肩线贴合', '袜子别出戏'],
+    heroImage: heroImages.interview,
     pieces: [
-      { category: 'top', name: '白色免烫衬衫', color: '白' },
-      { category: 'bottom', name: '深灰直筒西裤', color: '深灰' },
-      { category: 'shoes', name: '简洁白鞋', color: '白' },
-      { category: 'outerwear', name: '深蓝针织开衫', color: '深蓝' }
+      { category: 'top', name: '白色免烫衬衫', color: '白', image: pieceImages.shirt },
+      { category: 'bottom', name: '深灰直筒西裤', color: '深灰', image: pieceImages.trousers },
+      { category: 'shoes', name: '简洁白鞋', color: '白', image: pieceImages.whiteShoes },
+      { category: 'outerwear', name: '深蓝针织开衫', color: '深蓝', image: pieceImages.cardigan }
     ],
     isSample: false
   }),
@@ -163,11 +196,12 @@ export const outfitPlans: OutfitPlan[] = [
     reason: ['周末可以放松，但别丢掉干净感。', '基础单品更容易复用到衣柜里。'],
     avoidTips: ['不要同时宽松上衣和拖地裤。'],
     tips: ['裤腿稍卷一折', '鞋子保持白净', '加表或托特包提气质'],
+    heroImage: heroImages.weekend,
     pieces: [
-      { category: 'top', name: '灰白落肩 T 恤', color: '灰白' },
-      { category: 'bottom', name: '黑色直筒九分裤', color: '黑' },
-      { category: 'shoes', name: '米白帆布鞋', color: '米白' },
-      { category: 'outerwear', name: '浅灰衬衫', color: '浅灰' }
+      { category: 'top', name: '灰白落肩 T 恤', color: '灰白', image: pieceImages.tee },
+      { category: 'bottom', name: '黑色直筒九分裤', color: '黑', image: pieceImages.trousers },
+      { category: 'shoes', name: '米白帆布鞋', color: '米白', image: pieceImages.whiteShoes },
+      { category: 'outerwear', name: '浅灰衬衫', color: '浅灰', image: pieceImages.shirt }
     ],
     isSample: false
   }),
@@ -184,11 +218,12 @@ export const outfitPlans: OutfitPlan[] = [
     reason: ['轻熟风能把精神面貌提起来。', '材质对比能让简单单品看起来更贵。'],
     avoidTips: ['不要过度堆叠配饰。'],
     tips: ['外套长度不过臀', '裤线清晰', '皮鞋注意保养'],
+    heroImage: heroImages.date,
     pieces: [
-      { category: 'top', name: '深棕针织 POLO', color: '深棕' },
-      { category: 'bottom', name: '米白锥形裤', color: '米白' },
-      { category: 'shoes', name: '深棕乐福鞋', color: '深棕' },
-      { category: 'outerwear', name: '驼色短外套', color: '驼色' }
+      { category: 'top', name: '深棕针织 POLO', color: '深棕', image: pieceImages.polo },
+      { category: 'bottom', name: '米白锥形裤', color: '米白', image: pieceImages.trousers },
+      { category: 'shoes', name: '深棕乐福鞋', color: '深棕', image: pieceImages.loafers },
+      { category: 'outerwear', name: '驼色短外套', color: '驼色', image: pieceImages.jacket }
     ],
     isSample: false
   }),
@@ -205,11 +240,12 @@ export const outfitPlans: OutfitPlan[] = [
     reason: ['见客户要先建立可信赖感。', '基础单品即可完成轻商务效果。'],
     avoidTips: ['不要穿皱巴巴的衬衫。'],
     tips: ['衬衫下摆塞半前', '腰线提起来', '鞋子少花纹'],
+    heroImage: heroImages.client,
     pieces: [
-      { category: 'top', name: '雾蓝衬衫', color: '雾蓝' },
-      { category: 'bottom', name: '中灰直筒裤', color: '中灰' },
-      { category: 'shoes', name: '白色皮面板鞋', color: '白' },
-      { category: 'outerwear', name: '海军蓝轻西装', color: '海军蓝' }
+      { category: 'top', name: '雾蓝衬衫', color: '雾蓝', image: pieceImages.shirt },
+      { category: 'bottom', name: '中灰直筒裤', color: '中灰', image: pieceImages.trousers },
+      { category: 'shoes', name: '白色皮面板鞋', color: '白', image: pieceImages.whiteShoes },
+      { category: 'outerwear', name: '海军蓝轻西装', color: '海军蓝', image: pieceImages.blazer }
     ],
     isSample: false
   })

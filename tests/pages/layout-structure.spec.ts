@@ -13,25 +13,29 @@ describe('v2 layout structure', () => {
     expect(appConfig.tabBar.list.map((item: { text: string }) => item.text)).toEqual(['首页', '穿搭库', '我的']);
   });
 
-  it('keeps the home page weather summary, cold-start card, and featured preview sections', () => {
+  it('keeps the home page weather summary, cold-start card, and image-based featured preview sections', () => {
     const homeWxml = read('miniprogram/pages/home/index.wxml');
     expect(homeWxml).toContain('summary-card__weather');
     expect(homeWxml).toContain('cold-start');
     expect(homeWxml).toContain('featured-card');
+    expect(homeWxml).toContain('featured-card__image');
+    expect(homeWxml).not.toContain('最近收藏');
   });
 
-  it('uses a dedicated result hero card and fixed CTA on the results page', () => {
+  it('uses a dedicated result hero card with image assets and fixed CTA on the results page', () => {
     const resultsWxml = read('miniprogram/pages/results/index.wxml');
     expect(resultsWxml).toContain('result-card');
     expect(resultsWxml).toContain('piece-list');
     expect(resultsWxml).toContain('bottom-cta');
+    expect(resultsWxml).toContain('result-card__hero-image');
   });
 
-  it('uses gallery, explanation card, and piece grid on the detail page', () => {
+  it('uses gallery, explanation card, and image-backed piece grid on the detail page', () => {
     const detailWxml = read('miniprogram/pages/detail/index.wxml');
     expect(detailWxml).toContain('gallery-card');
     expect(detailWxml).toContain('为什么这样搭');
     expect(detailWxml).toContain('piece-grid');
     expect(detailWxml).toContain('保存这套穿搭');
+    expect(detailWxml).toContain('gallery-card__hero-image');
   });
 });

@@ -6,7 +6,6 @@ export const defaultContent = {
   generateButtonText: '生成今日穿搭',
   quickSceneTitle: '快捷场景',
   featuredTitle: '今日推荐',
-  favoritesTitle: '最近收藏',
   emptyFavoritesTitle: '还没有收藏',
   emptyFavoritesDescription: '先看示例数据，找到一套你愿意照抄的搭配。',
   emptyResultsTitle: '没有完全匹配，也别急',

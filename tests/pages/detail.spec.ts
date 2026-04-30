@@ -30,7 +30,8 @@ describe('detail page', () => {
     expect(viewModel.matchedReasons[0]).toContain('边界感');
     expect(viewModel.matchedReasons[2]).toContain('预算 300-800');
     expect(viewModel.pieceCards).toHaveLength(4);
-    expect(viewModel.galleryLabel).toContain('极简通勤');
+    expect(viewModel.outfit?.heroImage).toContain('https://');
+    expect(viewModel.pieceCards[0]?.image).toContain('https://');
   });
 
   it('toggles favorite status for valid outfit', () => {

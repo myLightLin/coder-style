@@ -25,14 +25,19 @@
           <tag-chip wx:for="{{featuredOutfit.impressionTags}}" wx:key="*this" label="{{item}}" />
           <tag-chip light="{{true}}" label="{{featuredTemperature}}" />
         </view>
+        <text wx:if="{{sampleHint}}" class="result-card__hint">{{sampleHint}}</text>
       </view>
       <view class="result-card__visual">
         <view class="result-card__hero">
-          <text class="result-card__visual-text">{{featuredFigureLabel}}</text>
+          <image
+            class="result-card__hero-image"
+            src="{{featuredOutfit.heroImage}}"
+            mode="aspectFill"
+          />
         </view>
         <view class="result-card__thumbs">
           <view wx:for="{{visualThumbs}}" wx:key="name" class="result-card__thumb">
-            <text>{{item.badge}}</text>
+            <image class="result-card__thumb-image" src="{{item.image}}" mode="aspectFill" />
           </view>
         </view>
       </view>
@@ -46,7 +51,7 @@
         data-outfit-id="{{featured.outfitId}}"
         bindtap="openPiece"
       >
-        <view class="piece-row__thumb">{{item.badge}}</view>
+        <image class="piece-row__thumb" src="{{item.image}}" mode="aspectFill" />
         <text class="piece-row__name">{{item.name}}</text>
         <text class="piece-row__arrow">›</text>
       </view>

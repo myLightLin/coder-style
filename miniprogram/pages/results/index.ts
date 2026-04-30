@@ -2,7 +2,7 @@ import { defaultContent } from '@/data/default-content';
 import { recommendOutfits, getSampleRecommendations } from '@/services/recommend';
 import type { BudgetLevel, Scene, StylePreference, UserPreferenceInput } from '@/types/outfit';
 import { budgetLabelMap, sceneLabelMap, styleLabelMap } from '@/utils/mapper';
-import { getOutfitFigureLabel, getOutfitTemperatureLabel, getPieceBadge } from '@/utils/outfit-display';
+import { getOutfitTemperatureLabel, getPieceBadge } from '@/utils/outfit-display';
 
 export function parseResultsQuery(query: Record<string, string>): UserPreferenceInput | null {
   if (query.mode === 'sample') {
@@ -31,7 +31,6 @@ export function buildResultsViewModel(query: Record<string, string>) {
     items,
     featured,
     featuredOutfit: featured?.outfit ?? null,
-    featuredFigureLabel: featured ? getOutfitFigureLabel(featured.outfit) : '',
     featuredTemperature: featured ? getOutfitTemperatureLabel(featured.outfit) : '',
     pieceRows:
       featured?.outfit.pieces.map((piece) => ({
@@ -41,7 +40,8 @@ export function buildResultsViewModel(query: Record<string, string>) {
     visualThumbs:
       featured?.outfit.pieces.slice(0, 3).map((piece) => ({
         name: piece.name,
-        badge: getPieceBadge(piece)
+        badge: getPieceBadge(piece),
+        image: piece.image
       })) ?? [],
     sampleHint: filters ? '' : defaultContent.sampleResultsHint,
     emptyState: items.some((item) => item.fallbackApplied) ? defaultContent.emptyResultsDescription : '',
@@ -70,7 +70,6 @@ export function createResultsPage() {
       items: [],
       featured: null,
       featuredOutfit: null,
-      featuredFigureLabel: '',
       featuredTemperature: '',
       pieceRows: [],
       visualThumbs: [],

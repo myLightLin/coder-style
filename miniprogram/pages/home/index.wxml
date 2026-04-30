@@ -30,7 +30,7 @@
     <text class="cold-start__arrow">›</text>
   </view>
 
-  <view class="section-label">场景筛选</view>
+  <view class="section-label">快捷场景</view>
   <view class="quick-scenes">
     <view
       wx:for="{{quickScenes}}"
@@ -57,31 +57,11 @@
       </view>
     </view>
     <view class="featured-card__visual">
-      <text class="featured-card__visual-label">{{featuredFigureLabel}}</text>
+      <image
+        class="featured-card__image"
+        src="{{featuredSample.heroImage}}"
+        mode="aspectFill"
+      />
     </view>
   </view>
-
-  <view class="section-label">最近收藏</view>
-  <view wx:if="{{recentFavorites.length}}">
-    <view
-      wx:for="{{recentFavorites}}"
-      wx:key="id"
-      class="favorite-card glass-card"
-      data-id="{{item.id}}"
-      bindtap="handleOpenFavorite"
-    >
-      <view>
-        <text class="favorite-card__title">{{item.title}}</text>
-        <text class="favorite-card__hint">{{item.impressionTags[0]}}</text>
-      </view>
-      <text class="favorite-card__arrow">›</text>
-    </view>
-  </view>
-  <empty-state
-    wx:else
-    title="还没有收藏"
-    description="先看示例数据，找到一套你愿意照抄的搭配。"
-    actionText="去看示例"
-    bind:action="handleSampleTap"
-  />
 </view>

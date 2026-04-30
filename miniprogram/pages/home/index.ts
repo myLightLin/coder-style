@@ -1,14 +1,9 @@
 import { defaultContent } from '@/data/default-content';
 import { outfitPlans } from '@/data/outfits';
-import { getFavorites } from '@/utils/storage';
-import { getSampleRecommendations } from '@/services/recommend';
-import { buildWeatherSummary, getOutfitFigureLabel, getOutfitTemperatureLabel } from '@/utils/outfit-display';
+import { buildWeatherSummary, getOutfitTemperatureLabel } from '@/utils/outfit-display';
 
 export function buildHomeViewModel() {
   const featuredSample = outfitPlans.find((item) => item.isSample && item.sceneTags.includes('commute')) ?? outfitPlans[0] ?? null;
-  const favoriteIds = getFavorites().slice(0, 2).map((item) => item.outfitId);
-  const recentFavorites = outfitPlans.filter((item) => favoriteIds.includes(item.id));
-  const samplePreview = getSampleRecommendations()[0] ?? null;
 
   return {
     heroTitle: defaultContent.heroTitle,
@@ -25,12 +20,8 @@ export function buildHomeViewModel() {
       { label: '见客户', scene: 'client', active: false }
     ],
     featuredSample,
-    featuredFigureLabel: featuredSample ? getOutfitFigureLabel(featuredSample) : '',
     featuredTemperature: featuredSample ? getOutfitTemperatureLabel(featuredSample) : '',
-    featuredTag: featuredSample?.impressionTags[0] ?? '',
-    recentFavorites,
-    samplePreview,
-    samplePreviewLabel: samplePreview ? getOutfitFigureLabel(samplePreview.outfit) : ''
+    featuredTag: featuredSample?.impressionTags[0] ?? ''
   };
 }
 

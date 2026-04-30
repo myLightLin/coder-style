@@ -29,6 +29,12 @@ export function buildDetailViewModel(outfitId: string) {
 
 export function toggleFavoriteState(outfit: OutfitPlan) {
   saveFavorite(outfit.id);
+  if (typeof wx !== 'undefined' && typeof wx.showToast === 'function') {
+    wx.showToast({
+      title: '已保存到我的',
+      icon: 'success'
+    });
+  }
   return true;
 }
 

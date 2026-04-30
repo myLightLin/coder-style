@@ -1,6 +1,7 @@
 <view class="page-shell">
   <view class="summary glass-card">
     <text class="summary__label">{{filterSummary}}</text>
+    <text wx:if="{{sampleHint}}" class="summary__banner">{{sampleHint}}</text>
     <text wx:if="{{emptyState}}" class="summary__note">{{emptyState}}</text>
   </view>
   <outfit-card

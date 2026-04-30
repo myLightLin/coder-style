@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "test": "vitest run --coverage",
+    "test": "mkdir -p coverage/.tmp && vitest run --coverage",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit"
   },

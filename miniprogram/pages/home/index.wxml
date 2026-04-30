@@ -5,8 +5,8 @@
     <text class="hero__hint">{{heroHint}}</text>
   </view>
 
-  <button class="primary-button hero__cta" bindtap="handleGenerateTap">{{'生成今日穿搭'}}</button>
-  <button class="ghost-button hero__subcta" bindtap="handleSampleTap">{{'体验示例方案'}}</button>
+  <button class="primary-button hero__cta" bindtap="handleGenerateTap">{{generateButtonText}}</button>
+  <button class="ghost-button hero__subcta" bindtap="handleSampleTap">{{sampleButtonText}}</button>
 
   <section-title title="快捷场景" />
   <view class="quick-scenes">
@@ -36,7 +36,7 @@
   <empty-state
     wx:else
     title="还没有收藏"
-    description="先体验示例方案，找到一套你愿意照抄的搭配。"
+    description="先看示例数据，找到一套你愿意照抄的搭配。"
     actionText="去看示例"
     bind:action="handleSampleTap"
   />

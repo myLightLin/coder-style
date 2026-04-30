@@ -31,6 +31,7 @@ describe('results page', () => {
     const viewModel = buildResultsViewModel({ mode: 'sample' });
     expect(viewModel.filters).toBeNull();
     expect(viewModel.items).toHaveLength(3);
+    expect(viewModel.sampleHint).toContain('当前为示例数据');
   });
 
   it('builds generated mode summary and fallback copy', () => {

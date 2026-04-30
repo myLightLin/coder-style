@@ -27,6 +27,7 @@ export function buildResultsViewModel(query: Record<string, string>) {
   return {
     filters,
     items,
+    sampleHint: filters ? '' : defaultContent.sampleResultsHint,
     emptyState: items.some((item) => item.fallbackApplied) ? defaultContent.emptyResultsDescription : '',
     filterSummary: filters
       ? `${sceneLabelMap[filters.scene]} / ${budgetLabelMap[filters.budgetLevel]} / ${styleLabelMap[filters.stylePreference]}`
@@ -40,6 +41,7 @@ export function createResultsPage() {
       filters: null,
       items: [],
       filterSummary: '',
+      sampleHint: '',
       emptyState: ''
     },
     onLoad(query: Record<string, string>) {

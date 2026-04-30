@@ -126,12 +126,12 @@ export function recommendOutfits(input: UserPreferenceInput): Array<Recommendati
   }
 
   const relaxedBudget = rankOutfits(input, { relaxBudget: true, relaxFormality: false, relaxScene: false });
-  if (relaxedBudget.length >= 3) {
+  if (relaxedBudget.length > strict.length) {
     return relaxedBudget;
   }
 
   const relaxedFormality = rankOutfits(input, { relaxBudget: true, relaxFormality: true, relaxScene: false });
-  if (relaxedFormality.length >= 3) {
+  if (relaxedFormality.length > relaxedBudget.length) {
     return relaxedFormality;
   }
 

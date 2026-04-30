@@ -12,6 +12,8 @@ export function buildHomeViewModel() {
     heroTitle: defaultContent.heroTitle,
     heroSubtitle: defaultContent.heroSubtitle,
     heroHint: defaultContent.heroHint,
+    generateButtonText: defaultContent.generateButtonText,
+    sampleButtonText: defaultContent.sampleButtonText,
     quickScenes: [
       { label: '上班通勤', scene: 'commute' },
       { label: '周末外出', scene: 'weekend' },

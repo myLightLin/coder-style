@@ -9,6 +9,16 @@
   font-weight: 600;
 }
 
+.summary__banner {
+  display: block;
+  margin-top: 14rpx;
+  padding: 14rpx 18rpx;
+  border-radius: 999rpx;
+  background: var(--tag-bg);
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
 .summary__note {
   display: block;
   margin-top: 12rpx;

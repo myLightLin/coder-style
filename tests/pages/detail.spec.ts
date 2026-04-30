@@ -8,7 +8,8 @@ describe('detail page', () => {
   beforeEach(() => {
     __resetStorage();
     vi.stubGlobal('wx', {
-      reLaunch: vi.fn()
+      reLaunch: vi.fn(),
+      showToast: vi.fn()
     });
   });
 
@@ -23,6 +24,7 @@ describe('detail page', () => {
     expect(outfit).toBeTruthy();
     expect(toggleFavoriteState(outfit!)).toBe(true);
     expect(isFavorite('commute-minimal-01')).toBe(true);
+    expect(wx.showToast).toHaveBeenCalledWith({ title: '已保存到我的', icon: 'success' });
   });
 
   it('handles page actions for valid and invalid states', () => {

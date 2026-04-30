@@ -1,4 +1,4 @@
-import { budgetLabelMap, sceneLabelMap, styleLabelMap } from '@/utils/mapper';
+import { sceneLabelMap, styleLabelMap } from '@/utils/mapper';
 import type { BudgetLevel, Scene, StylePreference } from '@/types/outfit';
 
 const sceneExplanations: Record<Scene, string> = {
@@ -16,9 +16,9 @@ const styleExplanations: Record<StylePreference, string> = {
 };
 
 const budgetExplanations: Record<BudgetLevel, string> = {
-  low: '基础款即可复现，不依赖高价品牌。',
-  medium: `${budgetLabelMap.medium}适合优先升级版型和面料。`,
-  high: `${budgetLabelMap.high}可以把预算放在鞋子和外套质感上。`
+  low: '预算 300 以内，优先用基础款复现，不依赖高价品牌。',
+  medium: '预算 300-800，适合优先升级版型和面料。',
+  high: '预算 800+，可以把预算放在鞋子和外套质感上。'
 };
 
 export function buildMatchedReasons(scene: Scene, style: StylePreference, budget: BudgetLevel): string[] {

@@ -28,7 +28,7 @@ describe('detail page', () => {
     });
     expect(viewModel.summary).toContain('见客户');
     expect(viewModel.matchedReasons[0]).toContain('边界感');
-    expect(viewModel.matchedReasons[2]).toContain('中预算');
+    expect(viewModel.matchedReasons[2]).toContain('预算 300-800');
   });
 
   it('toggles favorite status for valid outfit', () => {

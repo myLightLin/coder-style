@@ -4,11 +4,54 @@
     <text wx:if="{{sampleHint}}" class="summary__banner">{{sampleHint}}</text>
     <text wx:if="{{emptyState}}" class="summary__note">{{emptyState}}</text>
   </view>
-  <outfit-card
-    wx:for="{{items}}"
-    wx:key="outfitId"
-    item="{{item}}"
-    actionText="查看细节"
-    bind:open="openDetail"
+
+  <empty-state
+    wx:if="{{!featuredOutfit}}"
+    title="暂无推荐"
+    description="返回首页再试一组条件。"
+    actionText="返回首页"
+    bind:action="goHome"
   />
+
+  <view wx:else>
+    <view class="result-card glass-card" data-outfit-id="{{featured.outfitId}}" bindtap="openFeaturedDetail">
+      <view class="result-card__copy">
+        <text class="result-card__heading">推荐结果</text>
+        <view class="result-card__score-row">
+          <text class="result-card__score-label">匹配度</text>
+          <text class="result-card__score">{{featured.scoreLabel}}</text>
+        </view>
+        <view class="result-card__tags">
+          <tag-chip wx:for="{{featuredOutfit.impressionTags}}" wx:key="*this" label="{{item}}" />
+          <tag-chip light="{{true}}" label="{{featuredTemperature}}" />
+        </view>
+      </view>
+      <view class="result-card__visual">
+        <view class="result-card__hero">
+          <text class="result-card__visual-text">{{featuredFigureLabel}}</text>
+        </view>
+        <view class="result-card__thumbs">
+          <view wx:for="{{visualThumbs}}" wx:key="name" class="result-card__thumb">
+            <text>{{item.badge}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="piece-list glass-card">
+      <view
+        wx:for="{{pieceRows}}"
+        wx:key="name"
+        class="piece-row"
+        data-outfit-id="{{featured.outfitId}}"
+        bindtap="openPiece"
+      >
+        <view class="piece-row__thumb">{{item.badge}}</view>
+        <text class="piece-row__name">{{item.name}}</text>
+        <text class="piece-row__arrow">›</text>
+      </view>
+    </view>
+
+    <button class="primary-button bottom-cta" bindtap="openFeaturedDetail">查看细节</button>
+  </view>
 </view>

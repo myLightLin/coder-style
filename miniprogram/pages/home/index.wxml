@@ -1,19 +1,41 @@
 <view class="page-shell">
   <view class="hero">
     <text class="hero__title">{{heroTitle}}</text>
-    <text class="hero__subtitle">{{heroSubtitle}}</text>
-    <text class="hero__hint">{{heroHint}}</text>
+  </view>
+
+  <view class="summary-card glass-card">
+    <view class="summary-card__profile">
+      <view class="summary-card__avatar">程</view>
+      <view>
+        <text class="summary-card__greeting">Hi，程序员</text>
+        <text class="summary-card__hint">{{heroHint}}</text>
+      </view>
+    </view>
+    <view class="summary-card__weather">
+      <text class="summary-card__temp">{{weather.temperature}}</text>
+      <text class="summary-card__meta">{{weather.condition}} {{weather.range}}</text>
+      <text class="summary-card__meta">{{weather.dateLabel}}</text>
+    </view>
   </view>
 
   <button class="primary-button hero__cta" bindtap="handleGenerateTap">{{generateButtonText}}</button>
   <button class="ghost-button hero__subcta" bindtap="handleSampleTap">{{sampleButtonText}}</button>
 
-  <section-title title="快捷场景" />
+  <view class="cold-start glass-card" bindtap="handleSampleTap">
+    <view class="cold-start__icon">衣</view>
+    <view class="cold-start__content">
+      <text class="cold-start__title">{{coldStartTitle}}</text>
+      <text class="cold-start__hint">{{coldStartHint}}</text>
+    </view>
+    <text class="cold-start__arrow">›</text>
+  </view>
+
+  <view class="section-label">场景筛选</view>
   <view class="quick-scenes">
     <view
       wx:for="{{quickScenes}}"
       wx:key="scene"
-      class="quick-scenes__item glass-card"
+      class="quick-scenes__item {{item.active ? 'quick-scenes__item--active' : ''}}"
       data-scene="{{item.scene}}"
       bindtap="handleQuickSceneTap"
     >
@@ -21,17 +43,39 @@
     </view>
   </view>
 
-  <section-title title="今日推荐" subtitle="先看一套稳妥参考" />
-  <outfit-card wx:if="{{featuredSample}}" item="{{featuredSample}}" compact="{{true}}" />
+  <view class="section-label">今日推荐</view>
+  <view wx:if="{{featuredSample}}" class="featured-card glass-card" data-id="{{featuredSample.id}}" bindtap="handleOpenFavorite">
+    <view class="featured-card__copy">
+      <text class="featured-card__title">{{featuredSample.title}}</text>
+      <view class="featured-card__meta">
+        <text class="featured-card__meta-icon">☺</text>
+        <text>{{featuredTag}}</text>
+      </view>
+      <view class="featured-card__meta">
+        <text class="featured-card__meta-icon">℃</text>
+        <text>{{featuredTemperature}}</text>
+      </view>
+    </view>
+    <view class="featured-card__visual">
+      <text class="featured-card__visual-label">{{featuredFigureLabel}}</text>
+    </view>
+  </view>
 
-  <section-title title="最近收藏" />
+  <view class="section-label">最近收藏</view>
   <view wx:if="{{recentFavorites.length}}">
-    <outfit-card
+    <view
       wx:for="{{recentFavorites}}"
       wx:key="id"
-      item="{{item}}"
-      compact="{{true}}"
-    />
+      class="favorite-card glass-card"
+      data-id="{{item.id}}"
+      bindtap="handleOpenFavorite"
+    >
+      <view>
+        <text class="favorite-card__title">{{item.title}}</text>
+        <text class="favorite-card__hint">{{item.impressionTags[0]}}</text>
+      </view>
+      <text class="favorite-card__arrow">›</text>
+    </view>
   </view>
   <empty-state
     wx:else

@@ -7,7 +7,7 @@ page {
 }
 
 .page-shell {
-  padding: 28rpx;
+  padding: 28rpx 28rpx calc(28rpx + env(safe-area-inset-bottom));
 }
 
 .glass-card {
@@ -24,6 +24,7 @@ page {
   font-weight: 600;
   padding: 28rpx 24rpx;
   line-height: 1;
+  box-shadow: 0 16rpx 32rpx rgba(111, 148, 184, 0.22);
 }
 
 .ghost-button {

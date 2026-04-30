@@ -3,6 +3,7 @@ import { buildMatchedReasons, buildSummary } from '@/services/explain';
 import { getOutfitById } from '@/services/recommend';
 import { isFavorite, saveFavorite, saveHistory } from '@/utils/storage';
 import type { BudgetLevel, OutfitPlan, Scene, StylePreference } from '@/types/outfit';
+import { getOutfitFigureLabel, getPieceBadge } from '@/utils/outfit-display';
 
 type DetailContext = {
   scene: Scene;
@@ -40,6 +41,11 @@ export function buildDetailViewModel(query: Record<string, string>) {
 
   return {
     outfit,
+    galleryLabel: getOutfitFigureLabel(outfit),
+    pieceCards: outfit.pieces.map((piece) => ({
+      ...piece,
+      badge: getPieceBadge(piece)
+    })),
     summary: buildSummary(context?.scene ?? outfit.sceneTags[0], context?.stylePreference ?? outfit.styleTags[0]),
     matchedReasons: context
       ? buildMatchedReasons(context.scene, context.stylePreference, context.budgetLevel)
@@ -65,6 +71,8 @@ export function createDetailPage() {
   return {
     data: {
       outfit: null as OutfitPlan | null,
+      galleryLabel: '',
+      pieceCards: [] as Array<{ name: string; category: string; color: string; badge: string }>,
       summary: '',
       matchedReasons: [] as string[],
       favorite: false,

@@ -6,7 +6,8 @@ import { outfitPlans } from '@/data/outfits';
 describe('results page', () => {
   beforeEach(() => {
     vi.stubGlobal('wx', {
-      navigateTo: vi.fn()
+      navigateTo: vi.fn(),
+      reLaunch: vi.fn()
     });
   });
 
@@ -32,6 +33,8 @@ describe('results page', () => {
     expect(viewModel.filters).toBeNull();
     expect(viewModel.items).toHaveLength(3);
     expect(viewModel.sampleHint).toContain('当前为示例数据');
+    expect(viewModel.featuredOutfit?.title).toBe('极简通勤');
+    expect(viewModel.visualThumbs).toHaveLength(3);
   });
 
   it('builds generated mode summary and fallback copy', () => {
@@ -88,5 +91,20 @@ describe('results page', () => {
     };
     page.onLoad({ mode: 'sample' });
     expect(page.data.items).toHaveLength(3);
+  });
+
+  it('opens featured detail and can return home', () => {
+    const page = createResultsPage();
+    page.data.filters = null;
+    page.data.featured = {
+      outfitId: 'commute-minimal-01'
+    } as any;
+    page.openFeaturedDetail();
+    page.goHome();
+
+    expect(wx.navigateTo).toHaveBeenCalledWith({
+      url: '/pages/detail/index?outfitId=commute-minimal-01'
+    });
+    expect(wx.reLaunch).toHaveBeenCalledWith({ url: '/pages/home/index' });
   });
 });

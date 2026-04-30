@@ -8,38 +8,39 @@
   />
 
   <view wx:else>
-    <view class="hero-card glass-card">
-      <text class="hero-card__title">{{outfit.title}}</text>
-      <text class="hero-card__note">{{outfit.colorNote}}</text>
-      <view>
-        <tag-chip wx:for="{{outfit.impressionTags}}" wx:key="*this" label="{{item}}" />
+    <view class="gallery-card glass-card">
+      <view class="gallery-card__hero">
+        <text class="gallery-card__label">{{galleryLabel}}</text>
+      </view>
+      <view class="gallery-card__thumbs">
+        <view wx:for="{{pieceCards}}" wx:key="name" class="gallery-card__thumb">
+          <text class="gallery-card__thumb-badge">{{item.badge}}</text>
+          <text class="gallery-card__thumb-name">{{item.name}}</text>
+        </view>
       </view>
     </view>
 
     <view class="glass-card block">
-      <section-title title="为什么这样搭" />
+      <text class="block__title">为什么这样搭</text>
       <text class="block__summary">{{summary}}</text>
       <text wx:for="{{matchedReasons}}" wx:key="*this" class="block__item">• {{item}}</text>
     </view>
 
     <view class="glass-card block">
-      <section-title title="单品清单" />
-      <view wx:for="{{outfit.pieces}}" wx:key="name" class="piece-row">
-        <text class="piece-row__name">{{item.name}}</text>
-        <text class="piece-row__meta">{{item.category}} · {{item.color}}</text>
+      <text class="block__title">单品清单</text>
+      <view class="piece-grid">
+        <view wx:for="{{pieceCards}}" wx:key="name" class="piece-card">
+          <view class="piece-card__thumb">{{item.badge}}</view>
+          <text class="piece-card__name">{{item.name}}</text>
+        </view>
       </view>
     </view>
 
     <view class="glass-card block">
-      <section-title title="搭配技巧" />
+      <text class="block__title">搭配技巧</text>
       <tag-chip wx:for="{{outfit.tips}}" wx:key="*this" label="{{item}}" />
     </view>
 
-    <view class="glass-card block">
-      <section-title title="避坑提醒" />
-      <text wx:for="{{outfit.avoidTips}}" wx:key="*this" class="block__item">• {{item}}</text>
-    </view>
-
-    <button class="primary-button" bindtap="onFavoriteTap">{{favorite ? '已保存到收藏' : '保存这套穿搭'}}</button>
+    <button class="primary-button bottom-cta" bindtap="onFavoriteTap">{{favorite ? '已保存到我的' : '保存这套穿搭'}}</button>
   </view>
 </view>

@@ -27,6 +27,8 @@ describe('home page', () => {
     saveFavorite('commute-minimal-01');
     const page = createHomePage();
     expect(page.data.recentFavorites).toHaveLength(1);
+    expect(page.data.weather.temperature).toBe('22°C');
+    expect(page.data.featuredTag).toBe('低调有精神');
   });
 
   it('supports quick scene and favorite navigation', () => {

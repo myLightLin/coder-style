@@ -2,6 +2,7 @@ import { defaultContent } from '@/data/default-content';
 import { recommendOutfits, getSampleRecommendations } from '@/services/recommend';
 import type { BudgetLevel, Scene, StylePreference, UserPreferenceInput } from '@/types/outfit';
 import { budgetLabelMap, sceneLabelMap, styleLabelMap } from '@/utils/mapper';
+import { getOutfitFigureLabel, getOutfitTemperatureLabel, getPieceBadge } from '@/utils/outfit-display';
 
 export function parseResultsQuery(query: Record<string, string>): UserPreferenceInput | null {
   if (query.mode === 'sample') {
@@ -23,10 +24,25 @@ export function parseResultsQuery(query: Record<string, string>): UserPreference
 export function buildResultsViewModel(query: Record<string, string>) {
   const filters = parseResultsQuery(query);
   const items = filters ? recommendOutfits(filters) : getSampleRecommendations();
+  const featured = items[0] ?? null;
 
   return {
     filters,
     items,
+    featured,
+    featuredOutfit: featured?.outfit ?? null,
+    featuredFigureLabel: featured ? getOutfitFigureLabel(featured.outfit) : '',
+    featuredTemperature: featured ? getOutfitTemperatureLabel(featured.outfit) : '',
+    pieceRows:
+      featured?.outfit.pieces.map((piece) => ({
+        ...piece,
+        badge: getPieceBadge(piece)
+      })) ?? [],
+    visualThumbs:
+      featured?.outfit.pieces.slice(0, 3).map((piece) => ({
+        name: piece.name,
+        badge: getPieceBadge(piece)
+      })) ?? [],
     sampleHint: filters ? '' : defaultContent.sampleResultsHint,
     emptyState: items.some((item) => item.fallbackApplied) ? defaultContent.emptyResultsDescription : '',
     filterSummary: filters
@@ -52,6 +68,12 @@ export function createResultsPage() {
     data: {
       filters: null,
       items: [],
+      featured: null,
+      featuredOutfit: null,
+      featuredFigureLabel: '',
+      featuredTemperature: '',
+      pieceRows: [],
+      visualThumbs: [],
       filterSummary: '',
       sampleHint: '',
       emptyState: ''
@@ -61,6 +83,18 @@ export function createResultsPage() {
     },
     openDetail(event: WechatMiniprogram.CustomEvent<{ outfitId: string }>) {
       wx.navigateTo({ url: buildDetailUrl(event.detail.outfitId, this.data.filters) });
+    },
+    openPiece(event: WechatMiniprogram.BaseEvent<{ outfitId: string }>) {
+      wx.navigateTo({ url: buildDetailUrl(event.currentTarget.dataset.outfitId, this.data.filters) });
+    },
+    openFeaturedDetail() {
+      if (!this.data.featured) {
+        return;
+      }
+      wx.navigateTo({ url: buildDetailUrl(this.data.featured.outfitId, this.data.filters) });
+    },
+    goHome() {
+      wx.reLaunch({ url: '/pages/home/index' });
     }
   };
 }

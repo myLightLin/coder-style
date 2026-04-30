@@ -1,7 +1,6 @@
 {
   "navigationBarTitleText": "穿搭详情",
   "usingComponents": {
-    "section-title": "/components/section-title/index",
     "tag-chip": "/components/tag-chip/index",
     "empty-state": "/components/empty-state/index"
   }

@@ -25,3 +25,136 @@
   color: var(--text-secondary);
   line-height: 1.6;
 }
+
+.result-card {
+  display: grid;
+  grid-template-columns: 1fr 290rpx;
+  gap: 20rpx;
+  padding: 24rpx;
+  margin-bottom: 24rpx;
+}
+
+.result-card__heading,
+.result-card__score-label,
+.result-card__score,
+.result-card__visual-text,
+.piece-row__name {
+  display: block;
+}
+
+.result-card__heading {
+  font-size: 32rpx;
+  font-weight: 700;
+  margin-bottom: 20rpx;
+}
+
+.result-card__score-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10rpx;
+  margin-bottom: 20rpx;
+}
+
+.result-card__score-label {
+  font-size: 28rpx;
+  color: #6b93b8;
+  font-weight: 700;
+}
+
+.result-card__score {
+  font-size: 68rpx;
+  color: #6b93b8;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.result-card__tags {
+  padding-right: 12rpx;
+}
+
+.result-card__visual {
+  display: grid;
+  grid-template-columns: 1fr 90rpx;
+  gap: 10rpx;
+}
+
+.result-card__hero,
+.result-card__thumb {
+  border-radius: 20rpx;
+  background:
+    linear-gradient(180deg, rgba(17, 24, 39, 0.04), rgba(17, 24, 39, 0.18)),
+    linear-gradient(135deg, #d9d4ca 0%, #f1ece3 48%, #b8c7d6 100%);
+}
+
+.result-card__hero {
+  min-height: 320rpx;
+  padding: 20rpx;
+  display: flex;
+  align-items: flex-end;
+}
+
+.result-card__visual-text {
+  color: #ffffff;
+  font-size: 22rpx;
+  line-height: 1.5;
+}
+
+.result-card__thumbs {
+  display: grid;
+  gap: 10rpx;
+}
+
+.result-card__thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 20rpx;
+}
+
+.piece-list {
+  padding: 6rpx 24rpx;
+  margin-bottom: 160rpx;
+}
+
+.piece-row {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  min-height: 112rpx;
+  border-bottom: 2rpx solid var(--divider);
+}
+
+.piece-row:last-child {
+  border-bottom: 0;
+}
+
+.piece-row__thumb {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 18rpx;
+  background: rgba(233, 228, 217, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #596550;
+  flex-shrink: 0;
+}
+
+.piece-row__name {
+  flex: 1;
+  font-size: 32rpx;
+}
+
+.piece-row__arrow {
+  color: var(--text-secondary);
+  font-size: 36rpx;
+}
+
+.bottom-cta {
+  position: fixed;
+  left: 28rpx;
+  right: 28rpx;
+  bottom: 34rpx;
+  z-index: 5;
+}

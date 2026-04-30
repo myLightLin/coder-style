@@ -8,9 +8,35 @@
   ],
   "window": {
     "navigationBarTitleText": "程序员穿搭",
-    "navigationBarBackgroundColor": "#f7f2eb",
+    "navigationBarBackgroundColor": "#F7F5F2",
     "navigationBarTextStyle": "black",
-    "backgroundColor": "#f7f2eb"
+    "backgroundColor": "#F7F5F2"
+  },
+  "tabBar": {
+    "color": "#64748B",
+    "selectedColor": "#6B93B8",
+    "backgroundColor": "#FCFBF8",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "text": "首页",
+        "iconPath": "assets/tabbar/home.png",
+        "selectedIconPath": "assets/tabbar/home-active.png"
+      },
+      {
+        "pagePath": "pages/generate/index",
+        "text": "穿搭库",
+        "iconPath": "assets/tabbar/wardrobe.png",
+        "selectedIconPath": "assets/tabbar/wardrobe-active.png"
+      },
+      {
+        "pagePath": "pages/favorites/index",
+        "text": "我的",
+        "iconPath": "assets/tabbar/profile.png",
+        "selectedIconPath": "assets/tabbar/profile-active.png"
+      }
+    ]
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

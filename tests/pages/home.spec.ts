@@ -27,7 +27,9 @@ describe('home page', () => {
     const viewModel = buildHomeViewModel();
     expect(viewModel.weather.temperature).toBe('22°C');
     expect(viewModel.featuredTag).toBe('清爽低压');
+    expect(viewModel.featuredSample?.title).toBe('灰蓝轻通勤');
     expect(viewModel.featuredSample?.heroImage).toBe('/assets/primary-visuals/home-primary.png');
+    expect(viewModel.featuredSample?.pieces.map((piece) => piece.name)).toEqual(['灰蓝衬衫', '米白直筒长裤', '白色休闲鞋']);
     expect('recentFavorites' in viewModel).toBe(false);
   });
 

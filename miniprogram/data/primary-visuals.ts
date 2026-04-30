@@ -10,6 +10,12 @@ const localPrimaryVisuals = {
   detail: '/assets/primary-visuals/detail-primary.png'
 } as const;
 
+const homePieces: OutfitPiece[] = [
+  { category: 'top', name: '灰蓝衬衫', color: '灰蓝', image: 'https://images.unsplash.com/photo-1603252109303-2751441dd157?auto=format&fit=crop&w=800&q=80' },
+  { category: 'bottom', name: '米白直筒长裤', color: '米白', image: 'https://images.unsplash.com/photo-1506629905607-d9c297dce8cc?auto=format&fit=crop&w=800&q=80' },
+  { category: 'shoes', name: '白色休闲鞋', color: '白', image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80' }
+];
+
 const resultsPieces: OutfitPiece[] = [
   { category: 'top', name: '深灰针织 POLO', color: '深灰', image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80' },
   { category: 'bottom', name: '卡其直筒裤', color: '卡其', image: 'https://images.unsplash.com/photo-1506629905607-d9c297dce8cc?auto=format&fit=crop&w=800&q=80' },
@@ -38,8 +44,14 @@ function applyOverride(outfit: OutfitPlan | null, override: OutfitOverride): Out
 
 export function getHomeFeaturedOutfit(outfit: OutfitPlan | null) {
   return applyOverride(outfit, {
+    title: '灰蓝轻通勤',
     heroImage: localPrimaryVisuals.home,
-    impressionTags: ['清爽低压', '最易照穿']
+    impressionTags: ['清爽低压', '最易照穿'],
+    colorNote: '灰蓝衬衫 + 米白长裤 + 白鞋，符合首页方案 A 的低饱和轻商务基线。',
+    reason: ['灰蓝上装和米白长裤关系清楚，第一次看就能直接照穿。'],
+    tips: ['衬衫保持挺括', '裤型选直筒', '鞋面尽量留白干净'],
+    avoidTips: ['不要替换成头像近景或半身裁切图。'],
+    pieces: homePieces
   });
 }
 

@@ -31,7 +31,9 @@ describe('detail page', () => {
     expect(viewModel.matchedReasons[2]).toContain('预算 300-800');
     expect(viewModel.pieceCards).toHaveLength(4);
     expect(viewModel.outfit?.heroImage).toBe('/assets/primary-visuals/detail-primary.png');
+    expect(viewModel.outfit?.title).toBe('通勤层次展开款');
     expect(viewModel.pieceCards[0]?.name).toBe('海军蓝轻外套');
+    expect(viewModel.pieceCards.map((piece) => piece.name)).toEqual(['海军蓝轻外套', '白色基础 T 恤', '灰色直筒长裤', '小白鞋']);
     expect(viewModel.pieceCards[0]?.image).toContain('https://');
   });
 

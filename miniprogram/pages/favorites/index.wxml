@@ -1,0 +1,18 @@
+<view class="page-shell">
+  <section-title title="我的收藏" />
+  <view wx:if="{{favorites.length}}">
+    <outfit-card wx:for="{{favorites}}" wx:key="id" item="{{item}}" compact="{{true}}" />
+  </view>
+  <empty-state
+    wx:else
+    title="{{emptyTitle}}"
+    description="{{emptyDescription}}"
+    actionText="去生成"
+    bind:action="goGenerate"
+  />
+
+  <section-title title="最近查看" subtitle="最多保留 5 条" />
+  <view wx:if="{{history.length}}">
+    <outfit-card wx:for="{{history}}" wx:key="id" item="{{item}}" compact="{{true}}" />
+  </view>
+</view>

@@ -1,0 +1,49 @@
+<view class="page-shell">
+  <view class="glass-card panel">
+    <text class="panel__title">今天要去哪儿？</text>
+    <view class="option-group">
+      <view
+        wx:for="{{sceneOptions}}"
+        wx:key="value"
+        class="option {{form.scene === item.value ? 'option--active' : ''}}"
+        data-value="{{item.value}}"
+        bindtap="setScene"
+      >
+        <text>{{item.label}}</text>
+        <text class="option__desc">{{item.description}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="glass-card panel">
+    <text class="panel__title">预算档位</text>
+    <view class="pill-row">
+      <view
+        wx:for="{{budgetOptions}}"
+        wx:key="value"
+        class="pill {{form.budgetLevel === item.value ? 'pill--active' : ''}}"
+        data-value="{{item.value}}"
+        bindtap="setBudget"
+      >{{item.label}}</view>
+    </view>
+  </view>
+
+  <view class="glass-card panel">
+    <text class="panel__title">风格偏好</text>
+    <view class="pill-row">
+      <view
+        wx:for="{{styleOptions}}"
+        wx:key="value"
+        class="pill {{form.stylePreference === item.value ? 'pill--active' : ''}}"
+        data-value="{{item.value}}"
+        bindtap="setStyle"
+      >{{item.label}}</view>
+    </view>
+    <view class="panel__switch">
+      <text>接受稍正式一点</text>
+      <switch checked="{{form.acceptFormalUpgrade}}" color="#7c9fbe" bindchange="toggleFormal" />
+    </view>
+  </view>
+
+  <button class="primary-button submit" bindtap="submit">生成今日穿搭</button>
+</view>

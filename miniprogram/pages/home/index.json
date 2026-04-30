@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "程序员穿搭",
+  "usingComponents": {
+    "section-title": "/components/section-title/index",
+    "outfit-card": "/components/outfit-card/index",
+    "tag-chip": "/components/tag-chip/index",
+    "empty-state": "/components/empty-state/index"
+  }
+}

@@ -1,0 +1,37 @@
+.hero {
+  padding: 16rpx 4rpx 28rpx;
+}
+
+.hero__title {
+  display: block;
+  font-size: 72rpx;
+  font-weight: 700;
+  margin-bottom: 18rpx;
+}
+
+.hero__subtitle,
+.hero__hint {
+  display: block;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.hero__cta {
+  margin: 16rpx 0 20rpx;
+}
+
+.hero__subcta {
+  margin-bottom: 32rpx;
+}
+
+.quick-scenes {
+  display: flex;
+  gap: 16rpx;
+  margin-bottom: 28rpx;
+}
+
+.quick-scenes__item {
+  flex: 1;
+  text-align: center;
+  padding: 22rpx 12rpx;
+}

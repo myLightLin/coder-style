@@ -1,0 +1,17 @@
+{
+  "pages": [
+    "pages/home/index",
+    "pages/generate/index",
+    "pages/results/index",
+    "pages/detail/index",
+    "pages/favorites/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "程序员穿搭",
+    "navigationBarBackgroundColor": "#f7f2eb",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f7f2eb"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

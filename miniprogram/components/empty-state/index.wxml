@@ -1,0 +1,5 @@
+<view class="empty-state glass-card">
+  <text class="empty-state__title">{{title}}</text>
+  <text class="empty-state__desc">{{description}}</text>
+  <button wx:if="{{actionText}}" class="ghost-button empty-state__action" bindtap="onActionTap">{{actionText}}</button>
+</view>

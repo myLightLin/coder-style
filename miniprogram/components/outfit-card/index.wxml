@@ -1,0 +1,25 @@
+<view class="outfit-card glass-card" bindtap="onTapCard">
+  <view class="outfit-card__header">
+    <view>
+      <text class="outfit-card__title">{{item.outfit ? item.outfit.title : item.title}}</text>
+      <text wx:if="{{item.scoreLabel}}" class="outfit-card__score">匹配度 {{item.scoreLabel}}</text>
+    </view>
+    <view wx:if="{{item.outfit && item.outfit.impressionTags}}">
+      <tag-chip wx:for="{{item.outfit.impressionTags}}" wx:key="*this" label="{{item}}" />
+    </view>
+  </view>
+  <text class="outfit-card__summary">
+    {{item.outfit ? item.outfit.colorNote : item.colorNote}}
+  </text>
+  <view class="outfit-card__pieces">
+    <view
+      wx:for="{{item.outfit ? item.outfit.pieces : item.pieces}}"
+      wx:key="name"
+      class="outfit-card__piece"
+    >
+      <text class="outfit-card__piece-name">{{item.name}}</text>
+      <text class="outfit-card__piece-color">{{item.color}}</text>
+    </view>
+  </view>
+  <button wx:if="{{!compact}}" class="ghost-button outfit-card__action">{{actionText}}</button>
+</view>

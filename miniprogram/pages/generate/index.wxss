@@ -1,0 +1,60 @@
+.panel {
+  padding: 28rpx;
+  margin-bottom: 24rpx;
+}
+
+.panel__title {
+  display: block;
+  font-size: 34rpx;
+  font-weight: 700;
+  margin-bottom: 20rpx;
+}
+
+.option-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.option {
+  background: rgba(247, 242, 235, 0.82);
+  border: 2rpx solid transparent;
+  padding: 22rpx;
+  border-radius: 22rpx;
+}
+
+.option--active,
+.pill--active {
+  border-color: rgba(124, 159, 190, 0.45);
+  background: rgba(124, 159, 190, 0.12);
+}
+
+.option__desc {
+  display: block;
+  margin-top: 8rpx;
+  color: var(--text-secondary);
+  font-size: 24rpx;
+}
+
+.pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14rpx;
+}
+
+.pill {
+  padding: 16rpx 24rpx;
+  border-radius: 999rpx;
+  background: rgba(247, 242, 235, 0.82);
+}
+
+.panel__switch {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 24rpx;
+}
+
+.submit {
+  margin-top: 12rpx;
+}

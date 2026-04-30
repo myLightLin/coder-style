@@ -1,0 +1,4 @@
+<view class="section-title">
+  <text class="section-title__main">{{title}}</text>
+  <text wx:if="{{subtitle}}" class="section-title__sub">{{subtitle}}</text>
+</view>

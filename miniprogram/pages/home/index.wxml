@@ -1,0 +1,43 @@
+<view class="page-shell">
+  <view class="hero">
+    <text class="hero__title">{{heroTitle}}</text>
+    <text class="hero__subtitle">{{heroSubtitle}}</text>
+    <text class="hero__hint">{{heroHint}}</text>
+  </view>
+
+  <button class="primary-button hero__cta" bindtap="handleGenerateTap">{{'生成今日穿搭'}}</button>
+  <button class="ghost-button hero__subcta" bindtap="handleSampleTap">{{'体验示例方案'}}</button>
+
+  <section-title title="快捷场景" />
+  <view class="quick-scenes">
+    <view
+      wx:for="{{quickScenes}}"
+      wx:key="scene"
+      class="quick-scenes__item glass-card"
+      data-scene="{{item.scene}}"
+      bindtap="handleQuickSceneTap"
+    >
+      {{item.label}}
+    </view>
+  </view>
+
+  <section-title title="今日推荐" subtitle="先看一套稳妥参考" />
+  <outfit-card wx:if="{{featuredSample}}" item="{{featuredSample}}" compact="{{true}}" />
+
+  <section-title title="最近收藏" />
+  <view wx:if="{{recentFavorites.length}}">
+    <outfit-card
+      wx:for="{{recentFavorites}}"
+      wx:key="id"
+      item="{{item}}"
+      compact="{{true}}"
+    />
+  </view>
+  <empty-state
+    wx:else
+    title="还没有收藏"
+    description="先体验示例方案，找到一套你愿意照抄的搭配。"
+    actionText="去看示例"
+    bind:action="handleSampleTap"
+  />
+</view>

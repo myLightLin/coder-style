@@ -1,0 +1,13 @@
+<view class="page-shell">
+  <view class="summary glass-card">
+    <text class="summary__label">{{filterSummary}}</text>
+    <text wx:if="{{emptyState}}" class="summary__note">{{emptyState}}</text>
+  </view>
+  <outfit-card
+    wx:for="{{items}}"
+    wx:key="outfitId"
+    item="{{item}}"
+    actionText="查看细节"
+    bind:open="openDetail"
+  />
+</view>

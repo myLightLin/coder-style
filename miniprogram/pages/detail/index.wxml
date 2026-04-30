@@ -1,0 +1,45 @@
+<view class="page-shell">
+  <empty-state
+    wx:if="{{!outfit}}"
+    title="{{errorTitle}}"
+    description="{{errorDescription}}"
+    actionText="返回首页"
+    bind:action="goHome"
+  />
+
+  <view wx:else>
+    <view class="hero-card glass-card">
+      <text class="hero-card__title">{{outfit.title}}</text>
+      <text class="hero-card__note">{{outfit.colorNote}}</text>
+      <view>
+        <tag-chip wx:for="{{outfit.impressionTags}}" wx:key="*this" label="{{item}}" />
+      </view>
+    </view>
+
+    <view class="glass-card block">
+      <section-title title="为什么这样搭" />
+      <text class="block__summary">{{summary}}</text>
+      <text wx:for="{{outfit.reason}}" wx:key="*this" class="block__item">• {{item}}</text>
+    </view>
+
+    <view class="glass-card block">
+      <section-title title="单品清单" />
+      <view wx:for="{{outfit.pieces}}" wx:key="name" class="piece-row">
+        <text class="piece-row__name">{{item.name}}</text>
+        <text class="piece-row__meta">{{item.category}} · {{item.color}}</text>
+      </view>
+    </view>
+
+    <view class="glass-card block">
+      <section-title title="搭配技巧" />
+      <tag-chip wx:for="{{outfit.tips}}" wx:key="*this" label="{{item}}" />
+    </view>
+
+    <view class="glass-card block">
+      <section-title title="避坑提醒" />
+      <text wx:for="{{outfit.avoidTips}}" wx:key="*this" class="block__item">• {{item}}</text>
+    </view>
+
+    <button class="primary-button" bindtap="onFavoriteTap">{{favorite ? '已保存到收藏' : '保存这套穿搭'}}</button>
+  </view>
+</view>

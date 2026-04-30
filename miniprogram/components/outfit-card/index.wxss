@@ -1,0 +1,60 @@
+.outfit-card {
+  padding: 28rpx;
+  margin-bottom: 24rpx;
+}
+
+.outfit-card__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 20rpx;
+}
+
+.outfit-card__title {
+  display: block;
+  font-size: 40rpx;
+  font-weight: 700;
+  margin-bottom: 10rpx;
+}
+
+.outfit-card__score {
+  color: var(--primary-deep);
+  font-size: 26rpx;
+}
+
+.outfit-card__summary {
+  display: block;
+  margin: 20rpx 0;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.outfit-card__pieces {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.outfit-card__piece {
+  width: calc(50% - 8rpx);
+  background: rgba(247, 242, 235, 0.88);
+  border-radius: 20rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.outfit-card__piece-name {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.outfit-card__piece-color {
+  display: block;
+  margin-top: 8rpx;
+  color: var(--text-secondary);
+  font-size: 24rpx;
+}
+
+.outfit-card__action {
+  margin-top: 24rpx;
+}

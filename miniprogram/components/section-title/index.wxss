@@ -1,0 +1,16 @@
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 20rpx;
+}
+
+.section-title__main {
+  font-size: 36rpx;
+  font-weight: 700;
+}
+
+.section-title__sub {
+  font-size: 24rpx;
+  color: var(--text-secondary);
+}

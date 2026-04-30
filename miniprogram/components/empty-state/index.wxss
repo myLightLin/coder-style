@@ -1,0 +1,21 @@
+.empty-state {
+  padding: 36rpx 28rpx;
+  text-align: center;
+}
+
+.empty-state__title {
+  display: block;
+  font-size: 34rpx;
+  font-weight: 700;
+  margin-bottom: 12rpx;
+}
+
+.empty-state__desc {
+  display: block;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.empty-state__action {
+  margin-top: 24rpx;
+}

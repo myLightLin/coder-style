@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "推荐结果",
+  "usingComponents": {
+    "outfit-card": "/components/outfit-card/index",
+    "empty-state": "/components/empty-state/index"
+  }
+}

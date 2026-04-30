@@ -14,9 +14,21 @@ describe('detail page', () => {
   });
 
   it('shows empty state for invalid outfit id', () => {
-    const viewModel = buildDetailViewModel('missing-id');
+    const viewModel = buildDetailViewModel({ outfitId: 'missing-id' });
     expect(viewModel.outfit).toBeNull();
     expect(viewModel.errorTitle).toContain('不存在');
+  });
+
+  it('builds explanation from current filters when provided', () => {
+    const viewModel = buildDetailViewModel({
+      outfitId: 'commute-minimal-01',
+      scene: 'client',
+      budgetLevel: 'medium',
+      stylePreference: 'minimal'
+    });
+    expect(viewModel.summary).toContain('见客户');
+    expect(viewModel.matchedReasons[0]).toContain('边界感');
+    expect(viewModel.matchedReasons[2]).toContain('中预算');
   });
 
   it('toggles favorite status for valid outfit', () => {
@@ -35,8 +47,14 @@ describe('detail page', () => {
       }
     };
 
-    page.onLoad({ outfitId: 'commute-minimal-01' });
+    page.onLoad({
+      outfitId: 'commute-minimal-01',
+      scene: 'client',
+      budgetLevel: 'medium',
+      stylePreference: 'minimal'
+    });
     expect(page.data.outfit?.id).toBe('commute-minimal-01');
+    expect(page.data.summary).toContain('见客户');
     page.onFavoriteTap();
     expect(page.data.favorite).toBe(true);
 

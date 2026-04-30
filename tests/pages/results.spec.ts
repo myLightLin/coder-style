@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { buildResultsViewModel, createResultsPage, parseResultsQuery } from '@/pages/results/index';
+import { buildDetailUrl, buildResultsViewModel, createResultsPage, parseResultsQuery } from '@/pages/results/index';
 import { outfitPlans } from '@/data/outfits';
 
 describe('results page', () => {
@@ -63,8 +63,20 @@ describe('results page', () => {
 
   it('opens detail page from card event', () => {
     const page = createResultsPage();
+    page.data.filters = {
+      scene: 'client',
+      budgetLevel: 'medium',
+      stylePreference: 'minimal',
+      acceptFormalUpgrade: false
+    };
     page.openDetail({ detail: { outfitId: 'commute-minimal-01' } } as any);
-    expect(wx.navigateTo).toHaveBeenCalledWith({ url: '/pages/detail/index?outfitId=commute-minimal-01' });
+    expect(wx.navigateTo).toHaveBeenCalledWith({
+      url: '/pages/detail/index?outfitId=commute-minimal-01&scene=client&budgetLevel=medium&stylePreference=minimal'
+    });
+  });
+
+  it('builds fallback detail url when filters are missing', () => {
+    expect(buildDetailUrl('commute-minimal-01', null)).toBe('/pages/detail/index?outfitId=commute-minimal-01');
   });
 
   it('sets data on load', () => {

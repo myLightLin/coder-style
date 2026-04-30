@@ -35,6 +35,18 @@ export function buildResultsViewModel(query: Record<string, string>) {
   };
 }
 
+export function buildDetailUrl(outfitId: string, filters: UserPreferenceInput | null) {
+  const params = [`outfitId=${outfitId}`];
+
+  if (filters) {
+    params.push(`scene=${filters.scene}`);
+    params.push(`budgetLevel=${filters.budgetLevel}`);
+    params.push(`stylePreference=${filters.stylePreference}`);
+  }
+
+  return `/pages/detail/index?${params.join('&')}`;
+}
+
 export function createResultsPage() {
   return {
     data: {
@@ -48,7 +60,7 @@ export function createResultsPage() {
       this.setData(buildResultsViewModel(query));
     },
     openDetail(event: WechatMiniprogram.CustomEvent<{ outfitId: string }>) {
-      wx.navigateTo({ url: `/pages/detail/index?outfitId=${event.detail.outfitId}` });
+      wx.navigateTo({ url: buildDetailUrl(event.detail.outfitId, this.data.filters) });
     }
   };
 }

@@ -24,6 +24,13 @@ export function createFavoritesPage() {
     onShow() {
       this.setData(buildFavoritesViewModel());
     },
+    openDetail(event: WechatMiniprogram.CustomEvent<{ id?: string; outfitId?: string }>) {
+      const outfitId = event.detail.outfitId ?? event.detail.id;
+      if (!outfitId) {
+        return;
+      }
+      wx.navigateTo({ url: `/pages/detail/index?outfitId=${outfitId}` });
+    },
     goGenerate() {
       wx.navigateTo({ url: '/pages/generate/index' });
     }

@@ -1,15 +1,35 @@
 import { defaultContent } from '@/data/default-content';
-import { buildSummary } from '@/services/explain';
+import { buildMatchedReasons, buildSummary } from '@/services/explain';
 import { getOutfitById } from '@/services/recommend';
 import { isFavorite, saveFavorite, saveHistory } from '@/utils/storage';
-import type { OutfitPlan } from '@/types/outfit';
+import type { BudgetLevel, OutfitPlan, Scene, StylePreference } from '@/types/outfit';
 
-export function buildDetailViewModel(outfitId: string) {
-  const outfit = getOutfitById(outfitId);
+type DetailContext = {
+  scene: Scene;
+  budgetLevel: BudgetLevel;
+  stylePreference: StylePreference;
+};
+
+function parseDetailContext(query: Record<string, string>): DetailContext | null {
+  if (!query.scene || !query.budgetLevel || !query.stylePreference) {
+    return null;
+  }
+
+  return {
+    scene: query.scene as Scene,
+    budgetLevel: query.budgetLevel as BudgetLevel,
+    stylePreference: query.stylePreference as StylePreference
+  };
+}
+
+export function buildDetailViewModel(query: Record<string, string>) {
+  const context = parseDetailContext(query);
+  const outfit = getOutfitById(query.outfitId);
   if (!outfit) {
     return {
       outfit: null,
       summary: '',
+      matchedReasons: [],
       favorite: false,
       errorTitle: defaultContent.detailErrorTitle,
       errorDescription: defaultContent.detailErrorDescription
@@ -20,7 +40,10 @@ export function buildDetailViewModel(outfitId: string) {
 
   return {
     outfit,
-    summary: buildSummary(outfit.sceneTags[0], outfit.styleTags[0]),
+    summary: buildSummary(context?.scene ?? outfit.sceneTags[0], context?.stylePreference ?? outfit.styleTags[0]),
+    matchedReasons: context
+      ? buildMatchedReasons(context.scene, context.stylePreference, context.budgetLevel)
+      : outfit.reason,
     favorite: isFavorite(outfit.id),
     errorTitle: '',
     errorDescription: ''
@@ -43,12 +66,13 @@ export function createDetailPage() {
     data: {
       outfit: null as OutfitPlan | null,
       summary: '',
+      matchedReasons: [] as string[],
       favorite: false,
       errorTitle: '',
       errorDescription: ''
     },
     onLoad(query: Record<string, string>) {
-      this.setData(buildDetailViewModel(query.outfitId));
+      this.setData(buildDetailViewModel(query));
     },
     onFavoriteTap() {
       if (!this.data.outfit) {

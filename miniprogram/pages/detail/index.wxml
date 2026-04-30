@@ -19,7 +19,7 @@
     <view class="glass-card block">
       <section-title title="为什么这样搭" />
       <text class="block__summary">{{summary}}</text>
-      <text wx:for="{{outfit.reason}}" wx:key="*this" class="block__item">• {{item}}</text>
+      <text wx:for="{{matchedReasons}}" wx:key="*this" class="block__item">• {{item}}</text>
     </view>
 
     <view class="glass-card block">

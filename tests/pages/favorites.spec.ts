@@ -36,4 +36,12 @@ describe('favorites page', () => {
     page.goGenerate();
     expect(wx.navigateTo).toHaveBeenCalledWith({ url: '/pages/generate/index' });
   });
+
+  it('opens detail from favorites and history cards', () => {
+    const page = createPageHarness(createFavoritesPage());
+    page.openDetail({ detail: { id: 'commute-minimal-01' } } as any);
+    page.openDetail({ detail: { outfitId: 'interview-safe-01' } } as any);
+    expect(wx.navigateTo).toHaveBeenNthCalledWith(1, { url: '/pages/detail/index?outfitId=commute-minimal-01' });
+    expect(wx.navigateTo).toHaveBeenNthCalledWith(2, { url: '/pages/detail/index?outfitId=interview-safe-01' });
+  });
 });
